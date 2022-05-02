@@ -27,9 +27,9 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 	var names []Name
 	b, err := os.ReadFile("./names.json")
 	if err != nil {
-		fmt.Println(fmt.Errorf("error: %v", err))
-		w.WriteHeader(http.StatusInternalServerError)
-		return
+		fmt.Println(fmt.Errorf("warn: %v", err))
+	} else {
+		json.Unmarshal(b, &names)
 	}
 
 	err = r.ParseForm()
@@ -39,7 +39,6 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.Unmarshal(b, &names)
 	names = append(names, Name{
 		Name: r.Form.Get("name"),
 	})
@@ -55,11 +54,6 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleNames(w http.ResponseWriter, r *http.Request) {
-	b, err := os.ReadFile("./names.json")
-	if err != nil {
-		fmt.Println(fmt.Errorf("error: %v", err))
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
+	b, _ := os.ReadFile("./names.json")
 	w.Write(b)
 }
