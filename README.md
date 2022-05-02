@@ -14,4 +14,4 @@ Visiting the endpoint provided should show a a table populated with names:
 
 ![](./images/image1.PNG)
 
-If you can run this application, you can now move onto the next branch `step 1 - building your application`
+If you can run this application, you can now move onto the next branch `step1-building-your-application`
