@@ -12,4 +12,4 @@ $ bin/server-windows-amd64
 ```
 Visiting the endpoint provided should show a a table populated with names:
 
-![](./images/image1.png)
+![](./images/image1.PNG)
