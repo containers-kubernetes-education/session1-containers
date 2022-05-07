@@ -1,0 +1,26 @@
+############################
+# STEP 1 build executable binary
+############################
+FROM golang AS builder
+WORKDIR $GOPATH/src/github.com/containers-kubernetes-education/session1-containers
+COPY . /go/src/github.com/containers-kubernetes-education/session1-containers
+
+ENV CGO_ENABLED=0
+ENV GOOS=linux
+ENV GOARCH=amd64
+ENV GO111MODULE=auto
+ENV GOPATH=/go
+
+WORKDIR $GOPATH/src/github.com/containers-kubernetes-education/session1-containers
+COPY . /go/src/github.com/containers-kubernetes-education/session1-containers
+
+RUN go build -o /go/bin/run /go/src/github.com/containers-kubernetes-education/session1-containers/cmd/main.go
+
+############################
+# STEP 2 build a small image
+############################
+FROM scratch
+COPY --from=builder /go/bin/run /go/bin/run
+COPY assets /assets
+COPY names.json /names.json
+ENTRYPOINT ["/go/bin/run"]

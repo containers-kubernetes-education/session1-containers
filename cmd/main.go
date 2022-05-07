@@ -20,7 +20,7 @@ func main() {
 	http.HandleFunc("/names", handleNames)
 
 	log.Println("Serving on http://localhost:8766")
-	http.ListenAndServe(":8766", nil)
+	http.ListenAndServe("0.0.0.0:8766", nil)
 }
 
 func handleSave(w http.ResponseWriter, r *http.Request) {
