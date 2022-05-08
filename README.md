@@ -2,7 +2,7 @@
 
 This is the starting point for session 1. We will be taking this application and putting it inside a container.
 
-This is a very simple application which serves up some names populated from the `names.json` file, from a webserver and allows us to add new names to this list.
+This is a very simple application which serves up some names populated from the `data/names.json` file, from a webserver and allows us to add new names to this list.
 
 To run the application as is, run the correct binary inside the `bin/` for your OS. E.g:
 ```
