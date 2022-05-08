@@ -8,4 +8,4 @@ Contents:
 - `start-here` - Introduction to the application we will be containerising
 - `step1-building-your-application` - How to build the application into a container
 - `step2-running-the-application` - How to run out application in a container
-- `sumamry` - Session summary
+- `summary` - Session summary
