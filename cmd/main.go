@@ -25,7 +25,7 @@ func main() {
 
 func handleSave(w http.ResponseWriter, r *http.Request) {
 	var names []Name
-	b, err := os.ReadFile("./names.json")
+	b, err := os.ReadFile("./data/names.json")
 	if err != nil {
 		fmt.Println(fmt.Errorf("warn: %v", err))
 	} else {
@@ -49,11 +49,11 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	os.WriteFile("./names.json", bytes, os.ModeAppend)
+	os.WriteFile("./data/names.json", bytes, os.ModeAppend)
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
 func handleNames(w http.ResponseWriter, r *http.Request) {
-	b, _ := os.ReadFile("./names.json")
+	b, _ := os.ReadFile("./data/names.json")
 	w.Write(b)
 }
