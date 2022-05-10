@@ -50,7 +50,7 @@ fe7c045573d2  docker.io/library/myimage:v1              7 seconds ago   Up 7 sec
 Firstly you will notice that there are now two containers running. This is because the podman run command creates and starts an instance of a container. If we want to start/stop conmtainers, we can do with a command like `podman start eeb / podman stop eeb`.
 
 You will also notice `0.0.0.0:9876->8766/tcp` which tells us two things.
-1. The port 9876 from ANY ip address (in CIDR), will be routed to the port 8766 on this container
+1. The port 9876 from ANY ip address, will be routed to the port 8766 on this container
 2. It will accept TCP packets
 
 These can be configured if nessesary e.g: `podman run -d -p 127.0.0.1:8777:8766 myimage:v1` would limit only traffic coming from a localhost to access my container.
