@@ -2,25 +2,29 @@
 # STEP 1 build executable binary
 ############################
 FROM golang AS builder
+
+# Create a workspace on the GOPATH
 WORKDIR $GOPATH/src/github.com/containers-kubernetes-education/session1-containers
 COPY . /go/src/github.com/containers-kubernetes-education/session1-containers
 
+# Go specfic compile arguments
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
 ENV GO111MODULE=auto
 ENV GOPATH=/go
 
-WORKDIR $GOPATH/src/github.com/containers-kubernetes-education/session1-containers
-COPY . /go/src/github.com/containers-kubernetes-education/session1-containers
-
+# Compile the program to a binary called run
 RUN go build -o /go/bin/run /go/src/github.com/containers-kubernetes-education/session1-containers/cmd/main.go
 
 ############################
 # STEP 2 build a small image
 ############################
 FROM scratch
+# Copy the compiled binary from the container above
 COPY --from=builder /go/bin/run /go/bin/run
+# Copy the assests and data from my workspace
 COPY assets /assets
 COPY data/names.json /data/names.json
+# Runtime command
 ENTRYPOINT ["/go/bin/run"]
